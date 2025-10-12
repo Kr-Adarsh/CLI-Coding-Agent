@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CLI Coding Agent Interface</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --bg-1: #f6fbff;
+            --bg-2: #f3f0ff;
+            --accent-1: #6C5CE7;
+            --accent-2: #00BFA6;
+            --card: rgba(255, 255, 255, 0.75);
+            --muted: #6b7280;
+            --text: #0f172a;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(1200px 600px at 10% 10%, var(--bg-2), var(--bg-1));
+            font-family: 'Poppins', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto;
+            color: var(--text);
+        }
+
+        .page-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 920px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.82));
+            border-radius: 18px;
+            padding: 42px;
+            box-shadow: 0 12px 40px rgba(12, 18, 31, 0.12), 0 2px 8px rgba(12, 18, 31, 0.06);
+            border: 1px solid rgba(15, 23, 42, 0.04);
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 8px;
+            background: linear-gradient(180deg, var(--accent-2), var(--accent-1));
+            border-radius: 18px 0 0 18px;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .lead {
+            margin: 0 0 28px;
+            text-align: center;
+            font-size: 15px;
+            color: var(--muted);
+        }
+
+
+        .flex {
+            display: flex;
+            gap: 24px;
+        }
+
+        .main-col {
+            flex: 1;
+        }
+
+        .side-col {
+            flex: 0 0 280px;
+            margin-left: 15px;
+            text-align: left;
+            /* list-style-position: inside; */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--muted);
+        }
+        .side-col .output-box ul {
+            margin: 0;                      /* Remove default indents */
+            padding-left: 20px;             /* Add consistent left padding */
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+            border: 1px solid rgba(12, 18, 31, 0.06);
+            border-radius: 12px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(250, 250, 250, 0.6));
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            font-family:'Poppins', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent-1);
+            box-shadow: 0 8px 30px rgba(108, 92, 231, 0.12);
+            outline: none;
+        }
+
+        .actions {
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .muted-note {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        button {
+            padding: 14px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.16s, box-shadow 0.16s;
+        }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(108, 92, 231, 0.14);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .output-section {
+            margin-top: 24px;
+        }
+
+        .output-box {
+            min-height: 140px;
+            padding: 18px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Courier New';
+            font-size: 15px;
+            background: linear-gradient(180deg, rgba(12, 18, 31, 0.02), rgba(12, 18, 31, 0.01));
+            border: 1px solid rgba(15, 23, 42, 0.04);
+            border-radius: 12px;
+            white-space: pre-wrap;
+            box-shadow: 0 8px 24px rgba(11, 17, 34, 0.04);
+        }
+
+        .output-box.success {
+            border-left: 6px solid rgba(34, 197, 94, 0.16);
+        }
+
+        .output-box.error {
+            border-left: 6px solid rgba(239, 68, 68, 0.16);
+        }
+
+        @media (max-width:800px) {
+            .flex {
+                flex-direction: column;
+            }
+
+            .side-col {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrap">
+        <div class="container">
+            <h1>CLI Coding Agent</h1>
+            <div class="lead">Type a coding task below and the agent (locally) will attempt to solve it.</div>
+            <div class="flex">
+                <div class="main-col">
+                    <label for="taskInput">Enter your coding task or question</label>
+                    <input type="text" id="taskInput"
+                        placeholder="e.g., Write a program that prints the least common multiple of 13 and 16" />
+                    <div class="actions">
+                        <button onclick="submitTask()" id="submitBtn">Submit Task</button>
+                        <div class="muted-note">Processing may take a few seconds.</div>
+                    </div>
+                    <div class="output-section">
+                        <label>Output</label>
+                        <div id="outputBox" class="output-box">Ready to process your task…</div>
+                    </div>
+                </div>
+                <div class="side-col">
+                    <label>Quick tips</label>
+                    <div class="output-box">
+                        <ul>
+                            <li>Be specific in your prompt</li>
+                            <li>For numeric answers, expect the final integer</li>
+                            <li>If the agent errors, you’ll see details here</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const API_BASE_URL = 'http://127.0.0.1:8000';
+
+        // Convert raw output into headings, lists, and paragraphs
+        function renderOutput(raw) {
+            const lines = raw.split('\n');
+            let html = '';
+            let inList = false;
+
+            lines.forEach(line => {
+                const headingMatch = line.match(/^\s*\*\*(.+):\*\*/);
+                if (headingMatch) {
+                    if (inList) { html += '</ul>'; inList = false; }
+                    html += `<h3>${headingMatch[1].trim()}</h3>`;
+                }
+                else if (line.trim().startsWith('- ')) {
+                    if (!inList) { html += '<ul>'; inList = true; }
+                    const item = line.replace(/^\s*-\s*/, '');
+                    html += `<li>${item}</li>`;
+                }
+                else if (!line.trim()) {
+                    if (inList) { html += '</ul>'; inList = false; }
+                }
+                else {
+                    html += `<p>${line.trim()}</p>`;
+                }
+            });
+
+            if (inList) html += '</ul>';
+            return html;
+        }
+
+        async function submitTask() {
+            const task = document.getElementById('taskInput').value.trim();
+            const outputBox = document.getElementById('outputBox');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (!task) {
+                outputBox.textContent = 'Please enter a task first!';
+                outputBox.className = 'output-box error';
+                return;
+            }
+
+            outputBox.textContent = '🔄 Processing…';
+            outputBox.className = 'output-box';
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing…';
+
+            try {
+                const res = await fetch(`${API_BASE_URL}/task?q=${encodeURIComponent(task)}`);
+                const data = await res.json();
+
+                if (res.ok) {
+                    // Render formatted HTML instead of raw text
+                    outputBox.innerHTML = renderOutput(data.output);
+                    outputBox.className = 'output-box success';
+                } else {
+                    outputBox.textContent = `❌ Error: ${data.detail || 'Unknown error'}`;
+                    outputBox.className = 'output-box error';
+                }
+            } catch (err) {
+                outputBox.textContent = `❌ Network Error: ${err.message}`;
+                outputBox.className = 'output-box error';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Task';
+            }
+        }
+
+        document.getElementById('taskInput')
+            .addEventListener('keypress', e => {
+                if (e.key === 'Enter') submitTask();
+            });
+    </script>
+</body>
+
+</html>
