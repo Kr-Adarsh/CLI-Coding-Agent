@@ -50,6 +50,39 @@ uvicorn main:app --reload
 6. **Open the frontend**
 Open `frontend-interface.html` in your browser.
 
+
+## **Verify your GitHub Copilot CLI setup before running the project:**
+
+Run this command in your terminal:
+
+```
+copilot
+```
+
+- If it runs, your Copilot CLI is installed.
+- If you get an error like `command not found` or `copilot not installed`, you need to install Copilot first using npm or GitHub CLI.
+
+Once installed, login to your Copilot account by running:
+
+```
+copilot auth login
+```
+
+and follow the prompts.
+
+After login, run:
+
+```
+copilot auth status
+```
+
+to confirm you are authenticated.
+
+Once all these succeed, you can proceed to run the project.
+
+***
+
+
 ## Working Model
 
 1. The web page provides an input box for coding tasks or factual requests.
