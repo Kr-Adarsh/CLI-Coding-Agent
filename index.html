@@ -18,7 +18,6 @@
             --muted: #6b7280;
             --text: #0f172a;
         }
-
         html,
         body {
             margin: 0;
@@ -29,7 +28,6 @@
             font-family: 'Poppins', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto;
             color: var(--text);
         }
-
         .page-wrap {
             display: flex;
             align-items: center;
@@ -37,7 +35,6 @@
             padding: 60px 20px;
             min-height: 100vh;
         }
-
         .container {
             position: relative;
             width: 100%;
@@ -48,7 +45,24 @@
             box-shadow: 0 12px 40px rgba(12, 18, 31, 0.12), 0 2px 8px rgba(12, 18, 31, 0.06);
             border: 1px solid rgba(15, 23, 42, 0.04);
         }
-
+        .btn-restart {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #FF4D4F, #FF8680);
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(255, 77, 79, 0.14);
+            cursor: pointer;
+            z-index: 10;
+            transition: box-shadow 0.2s, background 0.2s;
+        }
+        .btn-restart:hover {
+            box-shadow: 0 4px 12px rgba(255, 77, 79, 0.24);
+            background: linear-gradient(135deg, #ff1818, #ff7a48);
+        }
         .container::before {
             content: '';
             position: absolute;
@@ -59,38 +73,30 @@
             background: linear-gradient(180deg, var(--accent-2), var(--accent-1));
             border-radius: 18px 0 0 18px;
         }
-
         h1 {
             margin: 0 0 12px;
             font-size: 32px;
             font-weight: 700;
             text-align: center;
         }
-
         .lead {
             margin: 0 0 28px;
             text-align: center;
             font-size: 15px;
             color: var(--muted);
         }
-
-
         .flex {
             display: flex;
             gap: 24px;
         }
-
         .main-col {
             flex: 1;
         }
-
         .side-col {
             flex: 0 0 280px;
             margin-left: 15px;
             text-align: left;
-            /* list-style-position: inside; */
         }
-
         label {
             display: block;
             margin-bottom: 8px;
@@ -99,10 +105,9 @@
             color: var(--muted);
         }
         .side-col .output-box ul {
-            margin: 0;                      /* Remove default indents */
-            padding-left: 20px;             /* Add consistent left padding */
+            margin: 0;
+            padding-left: 20px;
         }
-
         input[type="text"] {
             width: 100%;
             padding: 16px;
@@ -112,27 +117,23 @@
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(250, 250, 250, 0.6));
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
             transition: border-color 0.2s, box-shadow 0.2s;
-            font-family:'Poppins', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto;
+            font-family: 'Poppins', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto;
         }
-
         input[type="text"]:focus {
             border-color: var(--accent-1);
             box-shadow: 0 8px 30px rgba(108, 92, 231, 0.12);
             outline: none;
         }
-
         .actions {
             margin-top: 16px;
             display: flex;
             align-items: center;
             gap: 16px;
         }
-
         .muted-note {
             font-size: 13px;
             color: var(--muted);
         }
-
         button {
             padding: 14px 24px;
             font-size: 16px;
@@ -144,21 +145,17 @@
             cursor: pointer;
             transition: transform 0.16s, box-shadow 0.16s;
         }
-
         button:hover:not(:disabled) {
             transform: translateY(-2px) scale(1.02);
             box-shadow: 0 12px 24px rgba(108, 92, 231, 0.14);
         }
-
         button:disabled {
             opacity: 0.6;
             cursor: not-allowed;
         }
-
         .output-section {
             margin-top: 24px;
         }
-
         .output-box {
             min-height: 140px;
             padding: 18px;
@@ -170,30 +167,110 @@
             white-space: pre-wrap;
             box-shadow: 0 8px 24px rgba(11, 17, 34, 0.04);
         }
-
         .output-box.success {
             border-left: 6px solid rgba(34, 197, 94, 0.16);
         }
-
         .output-box.error {
             border-left: 6px solid rgba(239, 68, 68, 0.16);
         }
-
+        .output-box h1,
+        .output-box h2,
+        .output-box h3 {
+            margin-top: 20px;
+            font-weight: 700;
+            color: var(--accent-1);
+        }
+        .output-box p {
+            margin: 12px 0;
+            line-height: 1.5;
+            color: var(--text);
+        }
+        .output-box ul,
+        .output-box ol {
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+        .output-box a {
+            color: var(--accent-2);
+            text-decoration: underline;
+        }
+        .output-box code {
+            background: #ece6fa;
+            color: #a259ff;
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+        .btn-restart {
+        /* Set your desired size */
+        width: 30px;
+        height: 30px;
+        /* This makes it circular */
+        border-radius: 50%;
+        /* --- ADD THESE LINES --- */
+        /* This removes any default browser padding that causes the ellipse */
+        padding: 0; 
+        /* This ensures the width/height are final (includes border/padding) */
+        box-sizing: border-box; 
+        
+        /* --- Your other styles --- */
+        border: none;
+        cursor: pointer;
+        background-color: #f0f0f0;
+        transition: background-color 0.2s ease;
+        
+        /* (Optional) Good for centering an icon if you add one later */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+        .btn-restart:hover {
+        background-color: #e0e0e0;
+        }
+        .btn-restart:active {
+        background-color: #d0d0d0;
+        transform: scale(0.95);
+        }
         @media (max-width:800px) {
             .flex {
                 flex-direction: column;
             }
-
             .side-col {
                 flex: 1;
             }
         }
+    .server-alert {
+        position: fixed;
+        bottom: 32px;
+        left: 32px;
+        min-width: 200px;
+        background: #23272f;
+        color: #ffe292;
+        padding: 11px 22px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(23, 23, 23, 0.15);
+        font-size: 1rem;
+        font-weight: 600;
+        z-index: 10000;
+        opacity: 0.97;
+        transition: opacity 0.8s;
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .server-alert.awake { background: #232f26; color: #7dffb4;}
+    .server-alert.sleep { background: #241c1a; color: #ff8383;}
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
 <body>
     <div class="page-wrap">
         <div class="container">
+            <!-- Small red circular restart server button -->
+            <div >
+                <button id="restartBtn" class="btn-restart" onclick="restartServer()" title="Restart server"><span style="text-align: center; margin-bottom: 1px;">⏻</span></button>
+            </div>
             <h1>CLI Coding Agent</h1>
             <div class="lead">Type a coding task below and the agent (locally) will attempt to solve it.</div>
             <div class="flex">
@@ -207,7 +284,7 @@
                     </div>
                     <div class="output-section">
                         <label>Output</label>
-                        <div id="outputBox" class="output-box">Ready to process your task…</div>
+                        <div id="outputBox" class="output-box" aria-live="polite">Ready to process your task…</div>
                     </div>
                 </div>
                 <div class="side-col">
@@ -224,61 +301,54 @@
         </div>
     </div>
     <script>
-        const API_BASE_URL =  "https://KrAdarsh-CLI-Coding-Agent.hf.space";
-
-        // Convert raw output into headings, lists, and paragraphs
-        function renderOutput(raw) {
-            const lines = raw.split('\n');
-            let html = '';
-            let inList = false;
-
-            lines.forEach(line => {
-                const headingMatch = line.match(/^\s*\*\*(.+):\*\*/);
-                if (headingMatch) {
-                    if (inList) { html += '</ul>'; inList = false; }
-                    html += `<h3>${headingMatch[1].trim()}</h3>`;
-                }
-                else if (line.trim().startsWith('- ')) {
-                    if (!inList) { html += '<ul>'; inList = true; }
-                    const item = line.replace(/^\s*-\s*/, '');
-                    html += `<li>${item}</li>`;
-                }
-                else if (!line.trim()) {
-                    if (inList) { html += '</ul>'; inList = false; }
-                }
-                else {
-                    html += `<p>${line.trim()}</p>`;
-                }
-            });
-
-            if (inList) html += '</ul>';
-            return html;
+        const API_BASE_URL = "https://KrAdarsh-CLI-Coding-Agent.hf.space";
+        function showServerStatus(isAwake = true) {
+            const alert = document.getElementById('serverAlert');
+            if (!alert) return;
+            if (isAwake) {
+                alert.innerHTML = "🟢 Server is awake";
+                alert.classList.remove("sleep");
+                alert.classList.add("awake");
+            } else {
+                alert.innerHTML = "🔴 Server is sleeping or unreachable!";
+                alert.classList.remove("awake");
+                alert.classList.add("sleep");
+            }
+            alert.style.display = "flex";
+            alert.style.opacity = "0.97";
+            setTimeout(() => {
+                alert.style.opacity = 0;
+                setTimeout(() => (alert.style.display = "none"), 800);
+            }, 10000);
         }
-
+        // On load, ping the server
+        window.addEventListener("DOMContentLoaded", () => {
+            fetch(`${API_BASE_URL}/`)
+                .then(res => { if (res.ok) showServerStatus(true); else showServerStatus(false); })
+                .catch(() => showServerStatus(false));
+        });
         async function submitTask() {
             const task = document.getElementById('taskInput').value.trim();
             const outputBox = document.getElementById('outputBox');
             const submitBtn = document.getElementById('submitBtn');
-
             if (!task) {
                 outputBox.textContent = 'Please enter a task first!';
                 outputBox.className = 'output-box error';
                 return;
             }
-
             outputBox.textContent = '🔄 Processing…';
             outputBox.className = 'output-box';
             submitBtn.disabled = true;
             submitBtn.textContent = 'Processing…';
-
             try {
                 const res = await fetch(`${API_BASE_URL}/task?q=${encodeURIComponent(task)}`);
                 const data = await res.json();
-
-                if (res.ok) {
-                    // Render formatted HTML instead of raw text
-                    outputBox.innerHTML = renderOutput(data.output);
+                if (res.ok && data.status === "success" && data.output) {
+                    outputBox.innerHTML = marked.parse(data.output);
                     outputBox.className = 'output-box success';
+                } else if (data.output) {
+                    outputBox.textContent = `❌ Error: ${data.output}`;
+                    outputBox.className = 'output-box error';
                 } else {
                     outputBox.textContent = `❌ Error: ${data.detail || 'Unknown error'}`;
                     outputBox.className = 'output-box error';
@@ -291,12 +361,60 @@
                 submitBtn.textContent = 'Submit Task';
             }
         }
-
+        async function restartServer() {
+            const secret = prompt("Enter the secret key to restart the server:");
+            if (!secret) return;
+            const restartBtn = document.getElementById('restartBtn');
+            restartBtn.disabled = true;
+            try {
+                const res = await fetch(`${API_BASE_URL}/restart`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ secret }),
+                });
+                if (res.ok) {
+                    alert("Server is restarting. Please refresh this page after 30 seconds.");
+                } else {
+                    const data = await res.json();
+                    alert("Restart failed: " + (data.detail || "Unknown error"));
+                }
+            } catch (err) {
+                alert("Request error: " + err.message);
+            } finally {
+                restartBtn.disabled = false;
+            }
+        }
         document.getElementById('taskInput')
             .addEventListener('keypress', e => {
                 if (e.key === 'Enter') submitTask();
             });
+        // On page load, ping server root endpoint
+            window.addEventListener("DOMContentLoaded", () => {
+                fetch(`${API_BASE_URL}/`)
+                    .then(res => {
+                        if (res.ok) {
+                            // If this is *not* from cache, server probably just spun up
+                            if (!res.headers.get('cf-cache-status') || res.headers.get('cf-cache-status') === "MISS") {
+                                showServerAlert();
+                            }
+                        }
+                    })
+                    .catch(() => {
+                        // If failed, we can also alert
+                        showServerAlert();
+                    });
+            });
+            function showServerAlert() {
+                const alert = document.getElementById('serverAlert');
+                if (!alert) return;
+                alert.style.display = "block";
+                setTimeout(() => {
+                    alert.style.opacity = 0;
+                    setTimeout(() => alert.style.display = "none", 800);
+                }, 10000);
+            }
     </script>
+    <div id="serverAlert" class="server-alert" style="display:none;"></div>
 </body>
 
 </html>
