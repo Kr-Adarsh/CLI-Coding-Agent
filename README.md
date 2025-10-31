@@ -4,7 +4,7 @@
 
 CLI-Coding-Agent is a locally hosted coding assistant that joins a FastAPI backend with GitHub Copilot CLI. Users interact through a web interface to submit programming tasks or factual queries. The backend invokes Copilot directly from the command line, returning generated code or answers in real time—no external cloud dependency.
 
-You can access the [Site from here](https://kr-adarsh.github.io/CLI-Coding-Agent/)
+You can access the [Site from here](https://kr-adarsh.github.io/CLI-Coding-Agent/) - \[*Note:* Currently the server is running on hugging face to keep the site active and working, the code's same but with some tweaks..\]
 <h2>Working demo</h2> <a href="https://www.youtube.com/watch?v=4k6MRNkUiKU" rel="noopener noreferrer"> <img src="https://img.youtube.com/vi/4k6MRNkUiKU/maxresdefault.jpg" alt="CLI-Coding-Agent Demo" style="max-width:100%; height:auto;"> </a>
 
 ## Features
