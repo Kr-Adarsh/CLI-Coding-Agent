@@ -46,7 +46,11 @@ def run_coding_agent(task: str) -> str:
         return f"Error: {str(e)}"
 
 
-# Define your /task endpoint
+@app.get("/")
+def read_root():
+    return {"status": "ok", "message": "CLI Coding Agent backend is running."}
+
+#/task endpoint
 @app.get("/task")
 def handle_task(q: str = Query(...)):
     raw_output = run_coding_agent(q)
