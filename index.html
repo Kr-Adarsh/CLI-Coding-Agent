@@ -429,7 +429,7 @@
 
         <div class="header">
             <h1>CLI Coding Agent</h1>
-            <p>Your AI pair programmer, backed by Mistral</p>
+            <p>Your AI pair programmer, powered by Mistral</p>
         </div>
 
         <div class="input-group">
@@ -488,13 +488,17 @@
 
         // Custom Marked Renderer for beautiful code blocks + copy buttons
         const renderer = new marked.Renderer();
-        renderer.code = function (code, lang) {
+        renderer.code = function (arg1, arg2) {
+            const isToken = typeof arg1 === 'object' && arg1 !== null;
+            const code = isToken ? arg1.text : arg1;
+            const lang = isToken ? arg1.lang : arg2;
+
             const validLang = !!(lang && hljs.getLanguage(lang));
             const highlighted = validLang ? hljs.highlight(code, { language: lang }).value : hljs.highlightAuto(code).value;
             const languageLabel = (validLang ? lang : 'code').toUpperCase();
 
             // Escape code for the data attribute to prevent HTML breakage
-            const escapedCode = code.replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            const escapedCode = String(code).replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
             return `
                 <div class="code-block-wrapper">
@@ -508,7 +512,9 @@
         };
 
         // Single backtick inline code override to ensure it doesn't get messed up
-        renderer.codespan = function (text) {
+        renderer.codespan = function (arg1) {
+            const isToken = typeof arg1 === 'object' && arg1 !== null;
+            const text = isToken ? arg1.text : arg1;
             return `<code>${text}</code>`;
         };
 
@@ -535,11 +541,11 @@
             const alert = document.getElementById('serverAlert');
             if (!alert) return;
             if (isAwake) {
-                alert.innerHTML = "Server is awake";
+                alert.innerHTML = "🟢 Server is awake";
                 alert.classList.remove("sleep");
                 alert.classList.add("awake");
             } else {
-                alert.innerHTML = "Server is sleeping or unreachable!";
+                alert.innerHTML = "🔴 Server is sleeping or unreachable!";
                 alert.classList.remove("awake");
                 alert.classList.add("sleep");
             }
